@@ -1,0 +1,16 @@
+
+const num1 = parseFloat(prompt("Ingresa el primer número: "));
+const num2 = parseFloat(prompt("Ingresa el segundo número: "));
+const num3 = parseFloat(prompt("Ingresa el tercer número: "));
+
+// Comparamos los números para encontrar el mayor
+let mayor = num1;
+if (num2 > mayor) {
+  mayor = num2;
+}
+if (num3 > mayor) {
+  mayor = num3;
+}
+
+// Mostramos el resultado al usuario
+alert("El número mayor es: " + mayor);
