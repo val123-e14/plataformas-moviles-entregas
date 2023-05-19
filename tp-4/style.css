@@ -1,0 +1,64 @@
+
+@media (min-width: 400px){
+body {
+background-color: #234;
+}
+}
+
+@media (max-width: 800px) {
+    h1 {
+    text-align: center;
+    }
+    }
+
+@media screen and (orientation: landscape) {
+        article {
+        max-width: 50ch;
+        }
+        }
+        
+@media print {
+            p {
+            font-family: sans-serif;
+            }
+            }
+
+            body {
+                color: #111;
+                background-color: #DDD;
+                }
+                h1 {
+                color: #111;
+                background-color: #DDD;
+                }
+
+                a {
+                    background-color: #212;
+                    padding: 2px 5px;
+                    }
+
+                    @media only screen and (min-width: 800px) and (max-width: 899px) {
+                        .tu-imagen {
+                        display: none;
+                        }
+                        }
+
+                        .container {
+                            width: 100%;
+                            max-width: 400px;
+                            min-width: 200px;
+                            height: 400px;
+                            overflow: hidden;
+                            }
+                            .responsive-image {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                }
+
+                                @media (min-resolution: 2dppx) {
+                                    article {
+                                    background-color: #667;
+                                    }
+                                    }
+
