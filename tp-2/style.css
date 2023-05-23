@@ -1,8 +1,8 @@
 
 
 body{
-    background: hsl(0, 0%, 0%)(0, 0, 0);    
-    color: #ee6(200, 214, 0);
+    background: #222  ;
+    color: #ee6;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -16,7 +16,7 @@ p{
 }
 
 a{
-    color: #66f(255, 255, 255);
+    color: #444(255, 255, 255);
 }
 
 h1:hover{ 
