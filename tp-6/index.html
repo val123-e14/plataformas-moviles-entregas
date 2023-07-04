@@ -4,88 +4,70 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>The Weekend</title>
-    
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
       
-      <style>
-         
-         body {
-         background-color: #d80202;
-         }
-         .jumbotron {
-         background-image: url("weekend-background.jpg");
-         background-size: cover;
-         color: rgb(14, 6, 1);
-         text-shadow: 2px 2px 4px #000000;
-         padding: 100px;
-         }
-         h1 {
-         font-size: 48px;
-         }
-         .album {
-         margin-top: 50px;
-         }
-         .card {
-         border: none;
-         transition: transform 0.3s;
-         }
-         .card:hover {
-         transform: scale(1.05);
-         }
-         .card-img-top {
-         height: 300px;
-         object-fit: cover;
-         }
-         .card-title {
-         margin-top: 10px;
-         font-weight: bold;
-         }
-      </style>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">      
    </head>
    <body>
-      
-      <div class="jumbotron">
-         <div class="container">
-           <center> <h1 class="display-4">The Weekend</h1></center>
-            <p class="lead"></p>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+         <div class="container-fluid">
+           <a class="navbar-brand" href="#">The Weekend</a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarScroll">
+             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+               <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+               <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Link
+                 </a>
+                 <ul class="dropdown-menu">
+                   
+               
+                   <li><hr class="dropdown-divider"></li>
+                   <li><a class="dropdown-item" href="#">Something else here</a></li>
+                 </ul>
+               </li>
+              
+             </ul>
+             <form class="d-flex" role="search">
+               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+               <button class="btn btn-outline-success" type="submit">Search</button>
+             </form>
+           </div>
+         </div>
+       </nav>
+      <div class="container g-0">
+         <div class="row g-0">
+            <div class="card rounded-0 col-12 col-md-4 g-md-3">
+               <img src="you.jpg" class="card-img-top rounded-0">
+               <div class="card-body">
+                 <h5 class="card-title">Imagen 1</h5>
+               </div>
+             </div>
+             <div class="card rounded-0 col-12 col-md-4 g-md-3">
+               <img src="tu.jpg" class="card-img-top rounded-0">
+               <div class="card-body">
+                 <h5 class="card-title">Imagen 2</h5>
+               </div>
+             </div>
+             <div class="card rounded-0 col-12 col-md-4 g-md-3">
+               <img src="abelll.jpg" class="card-img-top rounded-0">
+               <div class="card-body">
+                 <h5 class="card-title">Imagen 3</h5>
+               </div>
+             </div>
          </div>
       </div>
-     
-      <div class="container album">
-         <div class="row">
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="you.jpg" class="card-img-top" alt="Album 1">
-                  <div class="card-body">
-                     <h5 class="card-title">imagen 1</h5>
-                     <p class="card-text">=)</p>
-                     <a href="#" class="btn btn-primary"><3</a>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="tu.jpg" class="card-img-top" alt="Album 2">
-                  <div class="card-body">
-                     <h5 class="card-title">imagen 2</h5>
-                     <p class="card-text">:(</p>
-                     <a href="#" class="btn btn-primary"><3</a>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="abelll.jpg" class="card-img-top" alt="Album 3">
-                  <div class="card-body">
-                     <h5 class="card-title">imagen 3</h5>
-                     <p class="card-text">:).</p>
-                     <a href="#" class="btn btn-primary"><3</a>
-                  </div>
-                
-                       
-                     </div>
-               </div>
-            </div>
-         </div>
-      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+   </body>
+</html>
       
