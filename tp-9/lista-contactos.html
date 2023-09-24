@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Contactos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>Lista de Contactos</h1>
+        <p class="lead">El objetivo es construir una lista de contactos, ordenada alfabéticamente por nombre.</p>
+        <p>Sugerencia: usar la función <code>mostrarListado()</code> para dibujar en la pantalla el listado de
+            contactos.</p>
+        <h2 class="h3">Objetivos Adicionales</h2>
+        <ol>
+            <li>Agregar opción de ordenar alfabéticamente por nombre o por apellido el listado de contactos.</li>
+            <li>Agregar un nuevo campo teléfono al formulario y a la lista de contactos.</li>
+            <li>Agregar la opción de marcar como favorito un contacto. Luego, agregar opción para ver sólo los contactos
+                favoritos.</li>
+        </ol>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>Contactos</h2>
+
+                <button class="btn btn-secondary" id="btn-ver-favoritos">Mostrar Favoritos</button>
+                <button class="btn btn-primary" id="btn-ordenar-nombre">Ordenar por Nombre</button>
+                <button class="btn btn-secondary" id="btn-ordenar-apellido">Ordenar por Apellido</button>
+                <hr class="hr">
+
+                <ul id="lista-contactos"></ul>
+
+                <h2>Nuevo Contacto</h2>
+                <form id="form-producto">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="nombre" id="input-nombre" placeholder="Nombre"
+                            aria-label="Nombre">
+                        <input type="text" class="form-control" name="apellido" id="input-apellido"
+                            placeholder="Apellido" aria-label="Apellido">
+                        <input type="text" class="form-control" name="telefono" id="input-telefono"
+                            placeholder="Teléfono" aria-label="Teléfono">
+
+                        <button class="btn btn-primary" type="button" id="btn-agregar">Agregar Contacto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        let contactos = [
+            {
+                nombre: 'Juan',
+                apellido: 'Pérez',
+                telefono: '11 1234-5678',
+                favorito: false,
+            },
+        ];
+
+        let mostrarTodos = true;
+        let ordenarPorNombre = true;
+
+        /**
+         * agregarContacto()
+         * esta función se va a llamar cuando el usuario envía el formulario con el nuevo contacto para agregar.
+         */
+        function agregarContacto(nombre, apellido, telefono, favorito = false) {
+            const nuevoContacto = {
+                nombre: nombre,
+                apellido: apellido,
+                telefono: telefono,
+                favorito: favorito,
+            };
+
+            contactos.push(nuevoContacto);
+            return contactos;
+        }
+
+        /**
+         * mostrarListado()
+         * esta función se encarga de mostrar en el DOM la lista de todos los contactos guardados en la variable global contactos.
+         */
+        function mostrarListado() {
+            const listaContactos = document.getElementById('lista-contactos');
+            listaContactos.innerHTML = '';
+
+            const contactosOrdenados = contactos.slice().sort((a, b) => {
+                if (ordenarPorNombre) {
+                    return a.nombre.localeCompare(b.nombre);
+                } else {
+                    return a.apellido.localeCompare(b.apellido);
+                }
+            });
+
+            if (mostrarTodos) {
+                contactosOrdenados.forEach(contacto => {
+                    const li = document.createElement('li');
+                    li.textContent = `${contacto.nombre} ${contacto.apellido} - Teléfono: ${contacto.telefono}`;
+
+                    const btnFavorito = document.createElement('button');
+                    btnFavorito.classList.add("btn", "btn-light", "btn-sm", "py-0", "px-1");
+                    btnFavorito.textContent = contacto.favorito ? '❤️' : '🖤';
+                    btnFavorito.addEventListener('click', () => toggleFavorito(contacto));
+                    li.appendChild(btnFavorito);
+
+                    listaContactos.appendChild(li);
+                });
+            } else {
+                const contactosFavoritos = contactosOrdenados.filter(contacto => contacto.favorito);
+
+                contactosFavoritos.forEach(contacto => {
+                    const li = document.createElement('li');
+                    li.textContent = `${contacto.nombre} ${contacto.apellido} - Teléfono: ${contacto.telefono}`;
+
+                    const btnFavorito = document.createElement('button');
+                    btnFavorito.classList.add("btn", "btn-light", "btn-sm", "py-0", "px-1");
+                    btnFavorito.textContent = contacto.favorito ? '❤️' : '🖤';
+                    btnFavorito.addEventListener('click', () => toggleFavorito(contacto));
+                    li.appendChild(btnFavorito);
+
+                    listaContactos.appendChild(li);
+                });
+            }
+        }
+
+        function toggleFavorito(contacto) {
+            contacto.favorito = !contacto.favorito;
+            mostrarListado();
+        }
+
+        function mostrarContactosOrdenadosPorNombre() {
+            ordenarPorNombre = true;
+            mostrarListado();
+        }
+
+        function mostrarContactosOrdenadosPorApellido() {
+            ordenarPorNombre = false;
+            mostrarListado();
+        }
+
+        window.addEventListener("load", function () {
+            mostrarListado();
+        });
+
+        document.getElementById('btn-ver-favoritos').addEventListener('click', () => {
+            mostrarTodos = !mostrarTodos;
+            mostrarListado();
+
+            if (mostrarTodos) {
+                document.getElementById('btn-ver-favoritos').classList.remove('btn-secondary');
+                document.getElementById('btn-ver-favoritos').classList.add('btn-primary');
+                document.getElementById('btn-ver-favoritos').textContent = 'Mostrar Favoritos';
+            } else {
+                document.getElementById('btn-ver-favoritos').classList.remove('btn-primary');
+                document.getElementById('btn-ver-favoritos').classList.add('btn-secondary');
+                document.getElementById('btn-ver-favoritos').textContent = 'Mostrar Todos';
+            }
+        });
+
+        document.getElementById('btn-ordenar-nombre').addEventListener('click', mostrarContactosOrdenadosPorNombre);
+        document.getElementById('btn-ordenar-apellido').addEventListener('click', mostrarContactosOrdenadosPorApellido);
+
+        function handlerFormulario(e) {
+            e.preventDefault();
+            const inputNombre = document.getElementById('input-nombre');
+            const inputApellido = document.getElementById('input-apellido');
+            const inputTelefono = document.getElementById('input-telefono');
+
+            const nombre = inputNombre.value;
+            const apellido = inputApellido.value;
+            const telefono = inputTelefono.value;
+
+            inputNombre.value = "";
+            inputApellido.value = "";
+            inputTelefono.value = "";
+
+            agregarContacto(nombre, apellido, telefono);
+            mostrarListado();
+        }
+
+        document.querySelector('form').addEventListener('submit', handlerFormulario);
+        document.getElementById('btn-agregar').addEventListener('click', handlerFormulario);
+    </script>
+</body>
+
+</html>

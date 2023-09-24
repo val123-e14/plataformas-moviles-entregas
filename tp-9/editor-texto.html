@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editor de Texto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style type="text/css">
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>Editor de Texto</h1>
+        <p class="lead">El objetivo es construir un muy simple Editor de Texto donde se puedan aplicar distintos estilos
+            a un texto.</p>
+        <h2 class="h3">Objetivos Adicionales</h2>
+        <ol>
+            <li>Agregar un nuevo botón con un estilo adicional (puede ser para aplicar un color al texto, por ejemplo).
+            </li>
+            <li>Agregar la posibilidad de editar el texto, con un input para escribir un nuevo texto.</li>
+            <li>Mostrar el estado actual de cada estilo en el botón (si está activado o no). Puede ser cambiando el
+                color o el texto del propio botón.</li>
+            <li>Agregar la funcionalidad de modificar el tamaño del texto.</li>
+        </ol>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>Texto</h2>
+
+                <p class="texto" id="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum
+                    auctor libero, vel imperdiet est. Etiam blandit facilisis ex, nec cursus metus pharetra quis. Fusce
+                    imperdiet nisl nibh, ac aliquet ante elementum vitae.</p>
+
+                <hr class="hr">
+
+                <h2>Opciones de Formato</h2>
+                <div class="row">
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-negrita" class="btn d-block w-100 btn-primary" data-funcion="negrita">
+                            Bold (Negrita)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-cursiva" class="btn d-block w-100 btn-primary" data-funcion="cursiva">
+                            Italic (Cursiva)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-subrayado" class="btn d-block w-100 btn-primary" data-funcion="subrayado">
+                            Underline (Subrayado)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-monoespaciado" class="btn d-block w-100 btn-primary"
+                            data-funcion="monoespaciadoTexto">
+                            Monoespaciado
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-aumentar" class="btn d-block w-100 btn-success" data-funcion="aumentarTexto">
+                            Aumentar Tamaño
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-disminuir" class="btn d-block w-100 btn-danger" data-funcion="disminuirTexto">
+                            Disminuir Tamaño
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+        const fuentePredeterminada = window.getComputedStyle(document.getElementById("texto"), null).getPropertyValue('font-family');
+
+        /**
+         * funcionNegrita()
+         * esta función se va a llamar cuando el usuario selecciona la opción Bold (negrita).
+         */
+        function funcionNegrita() {
+            const texto = document.getElementById("texto");
+            if (texto.style.fontWeight === "bold") {
+                texto.style.fontWeight = "normal";
+                document.getElementById("btn-negrita").classList.remove("btn-secondary");
+                document.getElementById("btn-negrita").classList.add("btn-primary");
+            } else {
+                texto.style.fontWeight = "bold";
+                document.getElementById("btn-negrita").classList.remove("btn-primary");
+                document.getElementById("btn-negrita").classList.add("btn-secondary");
+            }
+        }
+
+        /**
+         * funcionCursiva()
+         * esta función se va a llamar cuando el usuario selecciona la opción Bold (negrita).
+         */
+        function funcionCursiva() {
+            const texto = document.getElementById("texto");
+            if (texto.style.fontStyle === "italic") {
+                texto.style.fontStyle = "normal";
+                document.getElementById("btn-cursiva").classList.remove("btn-secondary");
+                document.getElementById("btn-cursiva").classList.add("btn-primary");
+            } else {
+                texto.style.fontStyle = "italic";
+                document.getElementById("btn-cursiva").classList.remove("btn-primary");
+                document.getElementById("btn-cursiva").classList.add("btn-secondary");
+            }
+        }
+
+        /**
+         * funcionSubrayado()
+         * esta función se va a llamar cuando el usuario selecciona la opción Bold (negrita).
+         */
+        function funcionSubrayado() {
+            const texto = document.getElementById("texto");
+            if (texto.style.textDecoration === "underline") {
+                texto.style.textDecoration = "none";
+                document.getElementById("btn-subrayado").classList.remove("btn-secondary");
+                document.getElementById("btn-subrayado").classList.add("btn-primary");
+            } else {
+                texto.style.textDecoration = "underline";
+                document.getElementById("btn-subrayado").classList.remove("btn-primary");
+                document.getElementById("btn-subrayado").classList.add("btn-secondary");
+            }
+        }
+
+        function aumentarTexto() {
+            const texto = document.getElementById("texto");
+            let fontSize = window.getComputedStyle(texto, null).getPropertyValue('font-size');
+            fontSize = parseFloat(fontSize);
+            if (fontSize < 30) {
+                fontSize += 2;
+                texto.style.fontSize = fontSize + 'px';
+            }
+        }
+
+        function disminuirTexto() {
+            const texto = document.getElementById("texto");
+            let fontSize = window.getComputedStyle(texto, null).getPropertyValue('font-size');
+            fontSize = parseFloat(fontSize);
+            if (fontSize > 10) {
+                fontSize -= 2;
+                texto.style.fontSize = fontSize + 'px';
+            }
+        }
+
+        function monoespaciadoTexto() {
+            const texto = document.getElementById("texto");
+            if (texto.style.fontFamily === fuentePredeterminada) {
+                texto.style.fontFamily = "Courier New, monospace";
+            } else {
+                texto.style.fontFamily = fuentePredeterminada;
+            }
+        }
+
+        function handlerBoton(e) {
+            const funcionBoton = e.target.dataset.funcion;
+            switch (funcionBoton) {
+                case 'negrita':
+                    funcionNegrita();
+                    break;
+                case 'cursiva':
+                    funcionCursiva();
+                    break;
+                case 'subrayado':
+                    funcionSubrayado();
+                    break;
+                case 'aumentarTexto':
+                    aumentarTexto();
+                    break;
+                case 'disminuirTexto':
+                    disminuirTexto();
+                    break;
+                case 'monoespaciadoTexto':
+                    monoespaciadoTexto();
+                    break;
+            }
+        }
+
+        document.querySelectorAll('button.btn').forEach(e => e.addEventListener('click', handlerBoton));
+
+    </script>
+</body>
+
+</html>
